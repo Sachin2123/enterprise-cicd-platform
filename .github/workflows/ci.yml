@@ -29,7 +29,14 @@ jobs:
       - name: Validate repository structure
         run: |
           echo "Checking project structure..."
+
+          echo "Checking README.md..."
           test -f README.md
+
+          echo "Checking backend directory..."
           test -d backend
+
+          echo "Checking backend/README.md..."
           test -f backend/README.md
+
           echo "Repository structure validation passed!"
