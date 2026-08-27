@@ -1,0 +1,42 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - feature/**
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: Validate Application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Display repository information
+        run: |
+          echo "CI Pipeline Started"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "Commit: ${{ github.sha }}"
+
+      - name: Validate repository structure
+        run: |
+          echo "Checking project structure..."
+
+          echo "Checking README.md..."
+          test -f README.md
+
+          echo "Checking backend directory..."
+          test -d backend
+
+          echo "Checking backend/README.md..."
+          test -f backend/README.md
+
+          echo "Repository structure validation passed!"
